@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": false,
+        "sourceMap": false,
+        "outDir": "./build/",
+        "importHelpers": true
+    },
+    "include": [
+      "./node_modules/compassql/typings/*.d.ts",
+      "./node_modules/vega-lite/typings/vega.d.ts",
+      "node_modules/@types/**/*.d.ts",
+      "./typings/*.d.ts",
+      "./src/**/*"
+    ]
+}
