@@ -1,5 +1,9 @@
-import { recommend } from 'compassql/build/src/recommend';
 import * as express from 'express';
+
+import {recommend} from 'compassql/build/src/recommend';
+import {Schema} from 'compassql/build/src/schema';
+import {Data} from 'vega-lite/build/src/data';
+
 
 import { serialize } from './utils';
 
@@ -14,11 +18,17 @@ router.route('/').get((req: express.Request, res: express.Response, next: expres
 
 router.route('/recommend').post((req: express.Request, res: express.Response) => {
   const query = req.body.query;
-  const schema = req.body.schema;
+  const fieldSchemas = req.body.schema;
+  const data = (req.body.data as Data);
+
+  const schema: Schema = new Schema(fieldSchemas);
+
   const modelGroup = recommend(query, schema).result;
 
-  console.log(JSON.stringify(modelGroup));
-  res.status(200).send(serialize(modelGroup));
+  const result = serialize(modelGroup, data)
+  console.log("RESULT", result)
+
+  res.status(200).send(result);
 });
 
 export = router;

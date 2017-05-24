@@ -36,11 +36,19 @@ app.use((req: express.Request, res: express.Response, next: express.NextFunction
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-    res.status(err.status || 500);
-    res.render('error', {
+    // res.status(err.status || 500);
+    // res.render('error', {
+    //   message: err.message,
+    //   error: err
+    // });
+
+    console.error("ERROR", err);
+
+    res.status(err.status || 500).send({
       message: err.message,
       error: err
     });
+
   });
 } else {
   app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {

@@ -1,7 +1,7 @@
 /**
  * Module dependencies.
  */
-import * as debug from 'debug';
+// import * as debug from 'debug';
 import * as http from 'http';
 
 import * as app from '../app';
@@ -14,7 +14,7 @@ const PORT = process.env.PORT || '3000';
 /**
  * Normalize a port into a number, string, or false.
  */
-function getPort(val) {
+function getPort(val: string) {
   const port = parseInt(val, 10);
   if (isNaN(port)) {
     // named pipe
